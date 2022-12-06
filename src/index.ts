@@ -20,6 +20,11 @@ async function main() {
             app.get("/", (req: Request, res: Response) => {
                 res.json({ message: "Servidor funcionando com sucesso" });
             });
+
+            app.get("/healthz", (req: Request, res: Response) => {
+                res.status(200).json({ message: "Servidor funcionando com sucesso" });
+            });
+
             app.get("/store", async (req: Request, res: Response) => {
                 
                 await prisma.user.create({
