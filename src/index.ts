@@ -48,7 +48,12 @@ async function main() {
                 res.json({ message: "Usuário criado com sucesso!" });
             });
             app.get("/get-all", async (req: Request, res: Response) => {
-                const users = await prisma.user.findMany();
+                const users = await prisma.user.findMany({
+                    include: {
+                        posts: true
+                    }
+                    
+                });
                 res.json({ message: "Usuários recuperados com sucesso!", users });
             });
 
